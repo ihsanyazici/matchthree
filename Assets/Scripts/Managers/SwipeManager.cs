@@ -27,7 +27,7 @@ public class SwipeManager : MonoBehaviour
     //  Check Swipe -- Depending on the Given Directions,
     void CheckSwipe()
     {
-        if (selectedDrop != null)
+        if (selectedDrop != null && selectedDrop.GetTile() != null)
         {
             //  Get swipe direction
             SwipeDirection swipeDirection = GetSwipeDirection();

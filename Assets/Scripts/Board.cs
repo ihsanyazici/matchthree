@@ -36,21 +36,25 @@ public class Board : MonoBehaviour
 
     public void AddToMatchingDrops(Drop drop)
     {
-        matchingDrops.Add(drop);
+        if (!matchingDrops.Contains(drop))
+        {
+            matchingDrops.Add(drop);
+        }
     }
     public void RemoveFromMatchingDrops(Drop drop)
     {
         matchingDrops.Remove(drop);
+    }
 
-        //  If after removal, no drops left inside, fill empty tiles
-        for (int i = 0; i < dropSpawner.GetDrops().Count; i++)
+    public bool IsMatchingListEmpty()
+    {
+        if (matchingDrops.Count == 0)
         {
-            //dropSpawner.GetDrops()[i].GetTile().FillEmptyTiles();
+            return true;
         }
-
-        for (int i = 0; i < gridCreator.GetTiles().Length; i++)
+        else
         {
-            //gridCreator.GetTiles()[i].FillEmptyTiles();
+            return false;
         }
     }
 

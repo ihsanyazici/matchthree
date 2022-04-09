@@ -5,8 +5,15 @@ public class BoardTile : MonoBehaviour
 {
     //  Neighbors
     [HideInInspector] public BoardTile east, west, north, south;    // Normally should be private, but for editor I set this to public
+
     //  Use this to set the tile as spawner
+    #region Spawner
     [SerializeField] private bool isSpawner;
+    [SerializeField] private float spawnCoolDown;
+    private float spawnCoolDownTimer;
+    private bool canSpawn;
+    #endregion
+
 
     //  Drop
     private Drop drop;
@@ -16,8 +23,6 @@ public class BoardTile : MonoBehaviour
     private List<BoardTile> matchedTilesColumn;
     private List<BoardTile> matchedTilesRow;
 
-
-
     private void Start()
     {
         //  Initialize the list
@@ -25,6 +30,34 @@ public class BoardTile : MonoBehaviour
         matchedTilesRow = new List<BoardTile>();
     }
 
+    private void Update()
+    {
+        //  If this is a spawner drop Will check whether self drop is empty, if so, will spawn drop!
+        if (isSpawner && drop == null)
+        {
+            if(canSpawn)
+            {
+                Board.instance.GetDropSpawner().SpawnDrop(this);
+                canSpawn = false;
+            }
+            else
+            {
+                CheckCoolDown();
+            }
+        }
+    }
+
+    void CheckCoolDown()
+    {
+        spawnCoolDownTimer += Time.deltaTime;
+
+        if (spawnCoolDownTimer >= spawnCoolDown)
+        {
+            spawnCoolDownTimer = 0f;
+            //  Set can spawn to true
+            canSpawn = true;
+        }
+    }
     //  Use these functions to set the the neighbors of tiles during grid creation
     #region Set Neighbors On Tile Spawn
     public static void SetEastWestNeighbors(BoardTile east, BoardTile west)
@@ -242,21 +275,11 @@ public class BoardTile : MonoBehaviour
     }
     #endregion
 
-
     //  Fill Empty South Tiles
-    #region Fill Empty South Tiles
-    public void FillEmptyTiles()
-    {
-        if (drop != null && south != null && south.GetDropType() == DropType.Null)
-        {
-            BoardTile emptyTile = ReturnEmptySouthernTile(south);
-            //drop.SetDestination(emptyTile);
-            //emptyTile.SetDropType(drop.GetDropType());
-            Debug.Log("I am tile " + name + " my destination is " + emptyTile);
-        }
-    }
+    #region Find Empty South Tiles
+
     //  Returns empty southern tile
-    private BoardTile ReturnEmptySouthernTile(BoardTile south)
+    public BoardTile ReturnEmptySouthernTile(BoardTile south)
     {        
         //  Base Case
 

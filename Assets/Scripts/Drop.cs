@@ -14,12 +14,12 @@ public class Drop : MonoBehaviour
     private float lerpTimer;
     private bool isSwapping;
     private Vector3 startPosition;
-    private BoardTile destinationTile;
+    private BoardTile destTile;
     #endregion
 
     #region Slide-Lerp
-    [SerializeField] private float slideTime;
-    private float slideTimer;
+    [SerializeField] private float slideLerpTime;
+    private float slideLerpTimer;
     private bool isSliding;
     #endregion
 
@@ -29,11 +29,24 @@ public class Drop : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void ResetDrop()
+    {
+
+    }
+
     private void Update()
     {
         if (isSwapping)
         {
             MoveToDestinationTile();
+        }
+        else if (isSliding)
+        {
+            SlideToDestinationTile();
+        }
+        else
+        {
+            CheckBelow();
         }
     }
 
@@ -71,15 +84,15 @@ public class Drop : MonoBehaviour
 
     #endregion
 
-    #region Swap Drops
 
+    #region Swap
 
     public void SetDestination(BoardTile destinationTile)
     {
         //  Set start position as your current position
         startPosition = transform.position;
         //  Set destination tile
-        this.destinationTile = destinationTile;
+        destTile = destinationTile;
         //  Set Yourself As Drop of Destination Tile
         destinationTile.SetDrop(this);
         //  Start Swap
@@ -88,43 +101,98 @@ public class Drop : MonoBehaviour
         transform.parent = destinationTile.transform;
     }
 
-    public void MoveToDestinationTile()
+    void MoveToDestinationTile()
     {
         lerpTimer += Time.deltaTime;
 
         if (lerpTimer <= lerpTime)
         {
             //  Lerp Towards Destination Tile Location
-            transform.position = Vector3.Lerp(startPosition, destinationTile.transform.position, lerpTimer / lerpTime);
+            transform.position = Vector3.Lerp(startPosition, destTile.transform.position, lerpTimer / lerpTime);
         }
         else
         {
+            //  Make sure final destination is reached
+            transform.position = destTile.transform.position;
             //  Reset Lerp Timer
             lerpTimer = 0;
             //  Stop Swap
             isSwapping = false;
-            //  Check Match
-            if (CheckMatch(destinationTile,SwipeDirection.Null))
+            //  Check Match if not sliding
+            if (!isSliding && CheckMatch(destTile,SwipeDirection.Null))
             {
-                selfTile.MatchDrops();
+                destTile.MatchDrops();
             }
+
+            //  empty destination tile
+            destTile = null;
         }
     }
-
-
     #endregion
+
+
+    #region Slide
+    void SetSlideDestination(BoardTile destinationTile)
+    {
+        //  Reset slide lerp timer
+        slideLerpTimer = 0f;
+        //  Empty selfTile since you don't swap but replace
+        selfTile.SetDrop(null);
+        //  Set start position as your current position
+        startPosition = transform.position;
+        //  Set destination tile
+        destTile = destinationTile;
+        //  Set Yourself As Drop of Destination Tile
+        destinationTile.SetDrop(this);
+        //  Start Swap
+        isSliding = true;
+        //  Set New Parent to Destinatian Tile
+        transform.parent = destinationTile.transform;
+    }
+
+    void SlideToDestinationTile()
+    {
+        slideLerpTimer += Time.deltaTime;
+
+        if (slideLerpTimer <= slideLerpTime)
+        {
+            //  Smooth t
+            float t = EaseFunctions.EaseOut(slideLerpTimer / slideLerpTime);
+            //  Lerp Towards Destination Tile Location
+            transform.position = Vector3.Lerp(startPosition, destTile.transform.position,t);
+        }
+        else
+        {
+            //  Make sure final destination is reached
+            transform.position = destTile.transform.position;
+            //  Play drop anim
+            anim.CrossFadeInFixedTime("Drop", 0f);
+            //  Reset Lerp Timer
+            slideLerpTimer = 0;
+            //  Stop Slide
+            isSliding = false;
+            //  Check Match
+            if (CheckMatch(destTile, SwipeDirection.Null))
+            {
+                destTile.MatchDrops();
+            }
+            //  empty destination tile
+            destTile = null;
+        }
+    }
+    #endregion
+
 
     #region Match
     public void Match()
     {
         //  Add this drop to matching drops
         Board.instance.AddToMatchingDrops(this);
-        //  Switch to match animation
-        anim.CrossFadeInFixedTime("Match", 0f);
         //  Remove Self From Tile and Add to the Pool
         RemoveFromTile();
-        //  Remove from matchind drops
-        Board.instance.RemoveFromMatchingDrops(this);
+        //  Switch to match animation
+        //anim.CrossFadeInFixedTime("Match", 0f);
+        SetNewAnim("Match");
     }
 
     public void RemoveFromTile()
@@ -138,6 +206,36 @@ public class Drop : MonoBehaviour
     }
     #endregion
 
+
+    #region CheckBelow
+    void CheckBelow()
+    {
+        //  If drop has a south tile
+        if (Board.instance.IsMatchingListEmpty() && selfTile != null && selfTile.south != null)
+        {
+            //  if our south tile doesn't have a drop
+            if (selfTile.south.GetDrop() == null)
+            {
+                BoardTile tile = selfTile.south.ReturnEmptySouthernTile(selfTile.south);
+                SetSlideDestination(tile);
+            }
+        }
+    }
+    #endregion
+
+    #region Animator
+    void SetNewAnim(string newAnim)
+    {
+        anim.SetTrigger(newAnim);
+    }
+    #endregion
+    public void DeactivateDrop()
+    {
+        //  Disable gameobject
+        gameObject.SetActive(false);
+        //  Remove from matchind drops
+        Board.instance.RemoveFromMatchingDrops(this);
+    }
     //  Getters & Setters
     #region Getters & Setters
     public DropType GetDropType()

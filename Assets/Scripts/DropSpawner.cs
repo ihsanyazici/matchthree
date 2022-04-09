@@ -45,6 +45,15 @@ public class DropSpawner : MonoBehaviour
         }
     }
 
+    public void SpawnDrop(BoardTile tile)
+    {
+        Drop tmp = Instantiate(GetRandomDrop(dropPrefabs), tile.transform);
+        //  Set drop of the tile and tile of the drop
+        tile.SetDrop(tmp);
+        //  Add Created Drops to the list
+        drops.Add(tmp);
+    }
+
     List<Drop> RemoveDropTypeFromList(List<Drop> dropsList,DropType removeType)
     {
         //  If our type is not null

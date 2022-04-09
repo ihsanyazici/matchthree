@@ -95,3 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af7c9af4d574b9429b0f5c0d45dea42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  east: {fileID: 0}
+  west: {fileID: 0}
+  north: {fileID: 0}
+  south: {fileID: 0}
+  isSpawner: 0
+  spawnCoolDown: 0.3
