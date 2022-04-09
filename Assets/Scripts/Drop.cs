@@ -17,6 +17,12 @@ public class Drop : MonoBehaviour
     private BoardTile destinationTile;
     #endregion
 
+    #region Slide-Lerp
+    [SerializeField] private float slideTime;
+    private float slideTimer;
+    private bool isSliding;
+    #endregion
+
     private void Start()
     {
         //  Get the animator of drop
@@ -62,10 +68,12 @@ public class Drop : MonoBehaviour
 
         return false;
     }
+
     #endregion
 
-
     #region Swap Drops
+
+
     public void SetDestination(BoardTile destinationTile)
     {
         //  Set start position as your current position
@@ -98,19 +106,25 @@ public class Drop : MonoBehaviour
             //  Check Match
             if (CheckMatch(destinationTile,SwipeDirection.Null))
             {
-                selfTile.DestroyMatchedDrops();
+                selfTile.MatchDrops();
             }
         }
     }
+
+
     #endregion
 
     #region Match
     public void Match()
     {
+        //  Add this drop to matching drops
+        Board.instance.AddToMatchingDrops(this);
         //  Switch to match animation
         anim.CrossFadeInFixedTime("Match", 0f);
         //  Remove Self From Tile and Add to the Pool
         RemoveFromTile();
+        //  Remove from matchind drops
+        Board.instance.RemoveFromMatchingDrops(this);
     }
 
     public void RemoveFromTile()
@@ -119,17 +133,13 @@ public class Drop : MonoBehaviour
         selfTile.SetDrop(null);
         //  Add yourself to the object pool
         GameManager.instance.Pool.AddDropToPool(this);
-        //  Remove yourself from drop list
+        //  Remove yourself from drops list
         Board.instance.GetDropSpawner().RemoveFromDropList(this);
     }
     #endregion
 
-    public void FindEmptyTiles()
-    {
-        selfTile.FillEmptyTiles();
-    }
-
     //  Getters & Setters
+    #region Getters & Setters
     public DropType GetDropType()
     {
         return dropType;
@@ -150,4 +160,6 @@ public class Drop : MonoBehaviour
     {
         selfTile = null;
     }
+    #endregion
+
 }

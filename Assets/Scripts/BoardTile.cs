@@ -5,16 +5,18 @@ public class BoardTile : MonoBehaviour
 {
     //  Neighbors
     [HideInInspector] public BoardTile east, west, north, south;    // Normally should be private, but for editor I set this to public
+    //  Use this to set the tile as spawner
+    [SerializeField] private bool isSpawner;
 
     //  Drop
     private Drop drop;
     private DropType dropType;
 
-    [SerializeField] private bool isSpawner;
-
     //  Will hold the matched tiles during check
     private List<BoardTile> matchedTilesColumn;
     private List<BoardTile> matchedTilesRow;
+
+
 
     private void Start()
     {
@@ -23,9 +25,8 @@ public class BoardTile : MonoBehaviour
         matchedTilesRow = new List<BoardTile>();
     }
 
-
+    //  Use these functions to set the the neighbors of tiles during grid creation
     #region Set Neighbors On Tile Spawn
-
     public static void SetEastWestNeighbors(BoardTile east, BoardTile west)
     {
         west.east = east;
@@ -39,8 +40,9 @@ public class BoardTile : MonoBehaviour
 
     #endregion
 
-    #region Check Matching Tiles on Start
 
+    //  Use these functions to prevent matching tiles for drop spawning
+    #region Check Matching Tiles on Start
     public DropType CheckWestNeighbors()
     {
         //  We need to check for 2 consecutive same type drops
@@ -87,6 +89,8 @@ public class BoardTile : MonoBehaviour
 
     #endregion
 
+
+    //  Returns Count of Adjacent Drops of same color
     #region Check Match
 
     public int CheckConsecutiveColumns(DropType dropType, SwipeDirection swipeDirection)
@@ -159,8 +163,44 @@ public class BoardTile : MonoBehaviour
 
     #endregion
 
+
+    //  Function to Check Given Side of Neighbors and Return Count of Adjacent Colors in Direction
+    #region Recursive Neighbor-Side Check
+
+    //  Recursively counts number of adjacent tiles
+    private int CountNeighborsInDirectionRecursively(int adjacent, BoardTile directionNeighbor, DropType dropType,SwipeDirection direction)
+    {
+        // Base condition:
+        if (directionNeighbor == null || directionNeighbor.GetDropType() != dropType)
+        {
+            //  Increment number of adjacent tiles
+            return adjacent;
+        }
+
+        // Recursive Part:
+
+        //  Add the Neighbor To The Matched List if it has a drop
+        if (directionNeighbor.drop != null && (direction == SwipeDirection.Left || direction == SwipeDirection.Right))
+        {
+            matchedTilesRow.Add(directionNeighbor);
+        }
+        else if(directionNeighbor.drop != null && (direction == SwipeDirection.Up || direction == SwipeDirection.Down))
+        {
+            matchedTilesColumn.Add(directionNeighbor);
+        }
+        //  Increment adjacent
+        adjacent++;
+        //  Get Next Neighbor in Same direction
+        BoardTile nextNeighbor = directionNeighbor.GetDirectionNeighbor(direction);
+        //  Call the same function for the next neighbor
+        return CountNeighborsInDirectionRecursively(adjacent, nextNeighbor , dropType, direction);
+    }
+    #endregion
+    
+        
+    //  Match the Drops
     #region Destroy Matched
-    public void DestroyMatchedDrops()
+    public void MatchDrops()
     {
         //  Get Column List Count
         int listCountCol = matchedTilesColumn.Count;
@@ -202,45 +242,17 @@ public class BoardTile : MonoBehaviour
     }
     #endregion
 
-    #region Recursive Neighbor-Side Check
 
-    //  Recursively counts number of adjacent tiles
-    private int CountNeighborsInDirectionRecursively(int adjacent, BoardTile directionNeighbor, DropType dropType,SwipeDirection direction)
-    {
-        // Base condition:
-        if (directionNeighbor == null || directionNeighbor.GetDropType() != dropType)
-        {
-            //  Increment number of adjacent tiles
-            return adjacent;
-        }
-
-        // Recursive Part:
-
-        //  Add the Neighbor To The Matched List if it has a drop
-        if (directionNeighbor.drop != null && (direction == SwipeDirection.Left || direction == SwipeDirection.Right))
-        {
-            matchedTilesRow.Add(directionNeighbor);
-        }
-        else if(directionNeighbor.drop != null && (direction == SwipeDirection.Up || direction == SwipeDirection.Down))
-        {
-            matchedTilesColumn.Add(directionNeighbor);
-        }
-        //  Increment adjacent
-        adjacent++;
-        //  Get Next Neighbor in Same direction
-        BoardTile nextNeighbor = directionNeighbor.GetDirectionNeighbor(direction);
-        //  Call the same function for the next neighbor
-        return CountNeighborsInDirectionRecursively(adjacent, nextNeighbor , dropType, direction);
-    }
-    #endregion
-
+    //  Fill Empty South Tiles
     #region Fill Empty South Tiles
     public void FillEmptyTiles()
     {
-        if (dropType != DropType.Null && south != null && south.GetDropType() == DropType.Null)
+        if (drop != null && south != null && south.GetDropType() == DropType.Null)
         {
             BoardTile emptyTile = ReturnEmptySouthernTile(south);
-            drop.SetDestination(emptyTile);
+            //drop.SetDestination(emptyTile);
+            //emptyTile.SetDropType(drop.GetDropType());
+            Debug.Log("I am tile " + name + " my destination is " + emptyTile);
         }
     }
     //  Returns empty southern tile
@@ -287,6 +299,10 @@ public class BoardTile : MonoBehaviour
     public DropType GetDropType()
     {
         return dropType;
+    }
+    public void SetDropType(DropType dropType)
+    {
+        this.dropType = dropType;
     }
     //  Neighbors
     public BoardTile GetWestNeighbor()
