@@ -17,8 +17,6 @@ public class Pool : MonoBehaviour
     {
         //  Add drop to the pool
         dropPool.Add(drop);
-        //  Reset drop
-        drop.ResetDrop();
         //  Add drop as child
         drop.transform.parent = transform;
     }
@@ -26,8 +24,6 @@ public class Pool : MonoBehaviour
     {
         //  Remove from the pool
         dropPool.Remove(drop);
-        //  Remove drop parent
-        //drop.transform.parent = null;
         //  Activate
         drop.gameObject.SetActive(true);
     }
@@ -65,11 +61,8 @@ public class Pool : MonoBehaviour
         
         //  Pick a random index
         int index = Random.Range(0, dropPool.Count);
-
         //  Get a random drop
         Drop drop = dropPool[index];
-        //  Reset the Drop
-        drop.ResetDrop();
         //  Remove from the pool
         RemoveFromPool(drop);
         //  Return random drop from pool

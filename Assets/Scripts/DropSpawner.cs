@@ -73,6 +73,8 @@ public class DropSpawner : MonoBehaviour
 
         //  Set drop of the tile and tile of the drop
         tile.SetDrop(tmp);
+        //  Reset Drop
+        tmp.ResetDrop();
         //  Add Created Drops to the list
         drops.Add(tmp);
     }

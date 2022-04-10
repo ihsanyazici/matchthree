@@ -266,10 +266,9 @@ public class Drop : MonoBehaviour
         //  Add this drop to matching drops
         board.AddToMatchingDrops(this);
         //  Remove Self From Tile and Add to the Pool
-        RemoveFromTile();
+        //RemoveFromTile();
         //  Switch to match animation
-        //anim.CrossFadeInFixedTime("Match", 0f);
-        SetNewAnim("Match");
+        anim.CrossFadeInFixedTime("Match", 0f);
     }
 
     public void RemoveFromTile()
@@ -318,26 +317,22 @@ public class Drop : MonoBehaviour
         gameObject.SetActive(false);
         //  Remove from matchind drops
         board.RemoveFromMatchingDrops(this);
+        RemoveFromTile();
     }
 
 
     //  Resets the drops
     public void ResetDrop()
     {
-        //  Reset anim trigger from matched
-        anim.ResetTrigger("Match");
-        //  Activate the drop
-        gameObject.SetActive(true);
-        //  Reset booleans
-        isSliding = false;
-        isSwapping = false;
-        isFalseMove = false;
-        //  Reset Position
+        transform.parent = selfTile.transform;
         transform.localPosition = Vector3.zero;
-        //  Reset timers
-        swapTimer = 0f;
-        slideLerpTimer = 0f;
-        halfMoveTimer = 0f;
+        transform.localScale = Vector3.one;
+
+        //  In case we are on top row, need to check match on reset too
+        if (CheckMatch(selfTile, SwipeDirection.Null))
+        {
+            selfTile.MatchDrops();
+        }
     }
 
 
