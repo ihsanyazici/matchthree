@@ -100,7 +100,7 @@ MonoBehaviour:
   north: {fileID: 8670030538291865893}
   south: {fileID: 5241435614834983959}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &53155143627601163
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   north: {fileID: 2676382834865496122}
   south: {fileID: 4971007393867770968}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &122422311009132977
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   north: {fileID: 4868929642075683601}
   south: {fileID: 262673033470363210}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &256383154415130306
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   north: {fileID: 4248211699711373035}
   south: {fileID: 6007841009199248237}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &311156711732311346
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 5583975906628957124}
   isSpawner: 1
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &505453661722328876
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
   north: {fileID: 2995023231354237175}
   south: {fileID: 1402532648907952164}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &560995587953755843
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
   north: {fileID: 2088203764187581410}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &612871074833238361
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   north: {fileID: 7340067326586058914}
   south: {fileID: 8670030538291865893}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &880288050322107373
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +908,7 @@ MonoBehaviour:
   north: {fileID: 5578442828677138941}
   south: {fileID: 8919665903366886317}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1056365341716950729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   north: {fileID: 5630154885290193011}
   south: {fileID: 2289878557750865042}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1144777998720822100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   north: {fileID: 8919665903366886317}
   south: {fileID: 8309084924609428790}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1266002397943614274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 8118732006344915417}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1553058756699632282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   north: {fileID: 4795343103636720183}
   south: {fileID: 8205559179032784038}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1584141130396435168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   north: {fileID: 8309084924609428790}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &1587374465217921736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   north: {fileID: 1269622660069583771}
   south: {fileID: 5839912035811929586}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2315076611428225360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   north: {fileID: 4365960385203405420}
   south: {fileID: 317819596805434076}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2507487155888922543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1716,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 8037055922265865252}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2548162565557434474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   north: {fileID: 8236582170308190145}
   south: {fileID: 697733561673695909}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2587266408656161361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,7 +1918,7 @@ MonoBehaviour:
   north: {fileID: 8118732006344915417}
   south: {fileID: 5759917642314105236}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2705986326229095584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2019,7 @@ MonoBehaviour:
   north: {fileID: 6870386700912433117}
   south: {fileID: 3728419468017722120}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2915773395726884705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   north: {fileID: 697733561673695909}
   south: {fileID: 6870386700912433117}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &2927421101672682188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,7 +2221,7 @@ MonoBehaviour:
   north: {fileID: 7507812539799517687}
   south: {fileID: 534455782493228337}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3023347053076559517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   north: {fileID: 5281055178569082707}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3084273396229614008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2423,7 @@ MonoBehaviour:
   north: {fileID: 5241435614834983959}
   south: {fileID: 5693743273413649560}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3144553467243861197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,7 +2524,7 @@ MonoBehaviour:
   north: {fileID: 1506192061403675924}
   south: {fileID: 3454891977990185475}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3368713875338550543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2625,7 @@ MonoBehaviour:
   north: {fileID: 237057537241309727}
   south: {fileID: 1098230173347675026}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3410753525172845455
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,7 +2726,7 @@ MonoBehaviour:
   north: {fileID: 6288292381710419537}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3501862019120887382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,7 +2827,7 @@ MonoBehaviour:
   north: {fileID: 5583975906628957124}
   south: {fileID: 5630154885290193011}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3660777149154692823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,7 +2928,7 @@ MonoBehaviour:
   north: {fileID: 7259522262374041966}
   south: {fileID: 2808593420017373970}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3777144519189613363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   north: {fileID: 4971007393867770968}
   south: {fileID: 2995023231354237175}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &3843241104650929980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3130,7 @@ MonoBehaviour:
   north: {fileID: 4376105069369292950}
   south: {fileID: 6624485217660516606}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4184977780081657743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,7 +3231,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 7507812539799517687}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4379608599786714436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,7 +3332,7 @@ MonoBehaviour:
   north: {fileID: 1971917772580836269}
   south: {fileID: 904147859722182324}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4766158443252962461
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,7 +3433,7 @@ MonoBehaviour:
   north: {fileID: 515430380905164279}
   south: {fileID: 1971917772580836269}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4919152882712919579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3534,7 @@ MonoBehaviour:
   north: {fileID: 7503586625243786082}
   south: {fileID: 5578442828677138941}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4927790783876009968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,7 +3635,7 @@ MonoBehaviour:
   north: {fileID: 904147859722182324}
   south: {fileID: 1429241458051840337}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &4987204544632583880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3736,7 +3736,7 @@ MonoBehaviour:
   north: {fileID: 6007841009199248237}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5194379772941817370
 GameObject:
   m_ObjectHideFlags: 0
@@ -3837,7 +3837,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 2676382834865496122}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5291614761529821375
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,7 +3938,7 @@ MonoBehaviour:
   north: {fileID: 262673033470363210}
   south: {fileID: 4365960385203405420}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5438854793338728764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4039,7 @@ MonoBehaviour:
   north: {fileID: 3454891977990185475}
   south: {fileID: 4376105069369292950}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5441187787522780281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4140,7 +4140,7 @@ MonoBehaviour:
   north: {fileID: 5195501426306193989}
   south: {fileID: 4261575156536490342}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5621836324851509839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,7 +4241,7 @@ MonoBehaviour:
   north: {fileID: 1962926727459479380}
   south: {fileID: 8185103808746475920}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &5954979797276789835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,7 +4342,7 @@ MonoBehaviour:
   north: {fileID: 3728419468017722120}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6090528028644868576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4443,7 +4443,7 @@ MonoBehaviour:
   north: {fileID: 8589242560720991647}
   south: {fileID: 7259522262374041966}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6133322257757978099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4544,7 +4544,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 1506192061403675924}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6209165297920492542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,7 +4645,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 4868929642075683601}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6359292562041545401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4746,7 +4746,7 @@ MonoBehaviour:
   north: {fileID: 2160724147303756921}
   south: {fileID: 4925121220145220491}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6457168903497058012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4847,7 +4847,7 @@ MonoBehaviour:
   north: {fileID: 6909726396468774604}
   south: {fileID: 1269622660069583771}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6663292446396756419
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,7 +4948,7 @@ MonoBehaviour:
   north: {fileID: 1500903136260993748}
   south: {fileID: 3049294099987023586}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6832689420768227022
 GameObject:
   m_ObjectHideFlags: 0
@@ -5049,7 +5049,7 @@ MonoBehaviour:
   north: {fileID: 0}
   south: {fileID: 7340067326586058914}
   isSpawner: 1
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &6958359218287906706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5406,7 +5406,7 @@ MonoBehaviour:
   north: {fileID: 7617469854950670494}
   south: {fileID: 272395136365545155}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &7572396777868004481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5507,7 +5507,7 @@ MonoBehaviour:
   north: {fileID: 1429241458051840337}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &7675808213738784351
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,7 +5608,7 @@ MonoBehaviour:
   north: {fileID: 8205559179032784038}
   south: {fileID: 4248211699711373035}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &7858652359368020992
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,7 +5709,7 @@ MonoBehaviour:
   north: {fileID: 8037055922265865252}
   south: {fileID: 6909726396468774604}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8197717149692525450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5810,7 +5810,7 @@ MonoBehaviour:
   north: {fileID: 5759917642314105236}
   south: {fileID: 7617469854950670494}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8539538460034817773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5911,7 +5911,7 @@ MonoBehaviour:
   north: {fileID: 534455782493228337}
   south: {fileID: 1962926727459479380}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8798170224314761015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6012,7 +6012,7 @@ MonoBehaviour:
   north: {fileID: 3049294099987023586}
   south: {fileID: 6288292381710419537}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8833934702689587628
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,7 +6113,7 @@ MonoBehaviour:
   north: {fileID: 1628962992541577878}
   south: {fileID: 1500903136260993748}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8836268197458827664
 GameObject:
   m_ObjectHideFlags: 0
@@ -6214,7 +6214,7 @@ MonoBehaviour:
   north: {fileID: 4261575156536490342}
   south: {fileID: 2088203764187581410}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8864627784108061064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6315,7 +6315,7 @@ MonoBehaviour:
   north: {fileID: 2289878557750865042}
   south: {fileID: 288426017141348511}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &8988946194939471210
 GameObject:
   m_ObjectHideFlags: 0
@@ -6416,7 +6416,7 @@ MonoBehaviour:
   north: {fileID: 1098230173347675026}
   south: {fileID: 2160724147303756921}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &9009696381921023790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6517,7 +6517,7 @@ MonoBehaviour:
   north: {fileID: 2808593420017373970}
   south: {fileID: 5281055178569082707}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &9088041996175735124
 GameObject:
   m_ObjectHideFlags: 0
@@ -6618,7 +6618,7 @@ MonoBehaviour:
   north: {fileID: 4925121220145220491}
   south: {fileID: 0}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
 --- !u!1 &9148415114611277859
 GameObject:
   m_ObjectHideFlags: 0
@@ -6719,4 +6719,4 @@ MonoBehaviour:
   north: {fileID: 1965772171091942143}
   south: {fileID: 5195501426306193989}
   isSpawner: 0
-  spawnCoolDown: 0.3
+  spawnCoolDown: 0
