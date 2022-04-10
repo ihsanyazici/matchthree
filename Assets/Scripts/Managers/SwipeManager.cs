@@ -39,17 +39,19 @@ public class SwipeManager : MonoBehaviour
                 BoardTile boardTile = selectedDrop.GetTile();
                 //  Get the destination tile
                 BoardTile destinationTile = boardTile.GetDirectionNeighbor(swipeDirection);
-                //  Get the drop in destination tile
-                Drop dropInDestinationTile = destinationTile.GetDrop();
-
-                if (selectedDrop.CanSwipeToDestination(boardTile.GetDirectionNeighbor(swipeDirection), swipeDirection))
+                //  Get the drop in destination tile if it's not null
+                if (destinationTile != null)
                 {
-                    selectedDrop.SetDestination(destinationTile);
-                    dropInDestinationTile.SetDestination(boardTile);
+                    Drop dropInDestinationTile = destinationTile.GetDrop();
+
+                    if (selectedDrop.CanSwipeToDestination(boardTile.GetDirectionNeighbor(swipeDirection), swipeDirection))
+                    {
+                        selectedDrop.SetDestination(destinationTile);
+                        dropInDestinationTile.SetDestination(boardTile);
+                    }
                 }
                 //  Swipe the drop Towards Destination
-                
-                ResetDrop();
+                ResetSelectedDrop();
             }            
         }        
     }
@@ -80,7 +82,7 @@ public class SwipeManager : MonoBehaviour
     }
 
     //  Resets drop, we no longer require chosen drop object
-    void ResetDrop()
+    void ResetSelectedDrop()
     {
         //  Reset Drop
         selectedDrop = null;
@@ -96,7 +98,12 @@ public class SwipeManager : MonoBehaviour
 
         if (hit.collider != null && hit.collider.GetComponent<Drop>() != null)
         {
-            selectedDrop = hit.collider.GetComponent<Drop>();
+            Drop tmp = hit.collider.GetComponent<Drop>();
+
+            if (!tmp.IsInAction())
+            {
+                selectedDrop = tmp;
+            }
         }
     }
 

@@ -41,6 +41,7 @@ public class Board : MonoBehaviour
             matchingDrops.Add(drop);
         }
     }
+
     public void RemoveFromMatchingDrops(Drop drop)
     {
         matchingDrops.Remove(drop);

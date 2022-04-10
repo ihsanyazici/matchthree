@@ -47,6 +47,8 @@ public class BoardTile : MonoBehaviour
         }
     }
 
+    //  Checks the cool down for spawning drops
+    #region CoolDown
     void CheckCoolDown()
     {
         spawnCoolDownTimer += Time.deltaTime;
@@ -58,6 +60,9 @@ public class BoardTile : MonoBehaviour
             canSpawn = true;
         }
     }
+    #endregion
+
+
     //  Use these functions to set the the neighbors of tiles during grid creation
     #region Set Neighbors On Tile Spawn
     public static void SetEastWestNeighbors(BoardTile east, BoardTile west)

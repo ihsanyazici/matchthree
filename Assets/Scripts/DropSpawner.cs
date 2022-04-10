@@ -13,6 +13,14 @@ public class DropSpawner : MonoBehaviour
     private List<Drop> drops;
     private int boardSize;
 
+    //  Hold the pool on your start
+    private Pool pool;
+
+    private void Start()
+    {
+        pool = GameManager.instance.Pool;
+    }
+
     public void InitDropSpawner()
     {
         //  Set grid creator
@@ -45,15 +53,30 @@ public class DropSpawner : MonoBehaviour
         }
     }
 
+    //  Spawns a single drop
     public void SpawnDrop(BoardTile tile)
     {
-        Drop tmp = Instantiate(GetRandomDrop(dropPrefabs), tile.transform);
+        Drop tmp;
+
+        //  Get Drops From the pool if it isn't empty
+        if (!pool.IsEmpty())
+        {
+            tmp = pool.ReturnRandomDropFromPool();
+        }
+
+        //  Else, spawn new drop
+        else
+        {
+            tmp = Instantiate(GetRandomDrop(dropPrefabs), tile.transform);            
+        }
+
         //  Set drop of the tile and tile of the drop
         tile.SetDrop(tmp);
         //  Add Created Drops to the list
         drops.Add(tmp);
     }
 
+    #region Random Drop To Picking To Initialize the Board
     List<Drop> RemoveDropTypeFromList(List<Drop> dropsList,DropType removeType)
     {
         //  If our type is not null
@@ -77,6 +100,10 @@ public class DropSpawner : MonoBehaviour
         int rand = Random.Range(0,usableDrops.Count);
         return usableDrops[rand];
     }
+
+    #endregion
+
+
 
     public List<Drop> GetDrops()
     {

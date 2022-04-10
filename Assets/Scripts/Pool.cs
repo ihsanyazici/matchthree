@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +12,13 @@ public class Pool : MonoBehaviour
         dropPool = new List<Drop>();
     }
 
+    //  Add & Remove From the Pool
     public void AddDropToPool(Drop drop)
     {
         //  Add drop to the pool
         dropPool.Add(drop);
+        //  Reset drop
+        drop.ResetDrop();
         //  Add drop as child
         drop.transform.parent = transform;
     }
@@ -28,5 +30,49 @@ public class Pool : MonoBehaviour
         drop.transform.parent = null;
         //  Activate
         drop.gameObject.SetActive(true);
+    }
+
+
+    //  Returns whether pool is empty or not
+    public bool IsEmpty()
+    {
+        if (dropPool.Count == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //  Returns pool count
+    public int PoolCount()
+    {
+        return dropPool.Count;
+    }
+    
+    //  Returns pool list
+    public List<Drop> ReturnPoolList()
+    {
+        return dropPool;
+    }
+
+    //  Returns a random drop from the pool
+    public Drop ReturnRandomDropFromPool()
+    {
+        //  I check whether list is empty or not using IsEmpty, therefor I won't check it here
+        
+        //  Pick a random index
+        int index = Random.Range(0, dropPool.Count);
+
+        //  Get a random drop
+        Drop drop = dropPool[index];
+        //  Reset the Drop
+        drop.ResetDrop();
+        //  Remove from the pool
+        RemoveFromPool(drop);
+        //  Return random drop from pool
+        return drop;       
     }
 }

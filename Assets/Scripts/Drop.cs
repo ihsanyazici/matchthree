@@ -10,8 +10,8 @@ public class Drop : MonoBehaviour
     private Animator anim;
 
     #region Swap-Lerp
-    [SerializeField] private float lerpTime;
-    private float lerpTimer;
+    [SerializeField] private float swapTime;
+    private float swapTimer;
     private bool isSwapping;
     private Vector3 startPosition;
     private BoardTile destTile;
@@ -23,15 +23,17 @@ public class Drop : MonoBehaviour
     private bool isSliding;
     #endregion
 
+    #region WrongMoveLerp
+    [SerializeField] private float halfMoveTime;
+    private float halfMoveTimer;
+    private bool isFalseMove;
+    private bool isDirection;
+    #endregion
+
     private void Start()
     {
         //  Get the animator of drop
         anim = GetComponent<Animator>();
-    }
-
-    public void ResetDrop()
-    {
-
     }
 
     private void Update()
@@ -44,12 +46,17 @@ public class Drop : MonoBehaviour
         {
             SlideToDestinationTile();
         }
+        else if (isFalseMove)
+        {
+            WrongMove();
+        }
         else
         {
             CheckBelow();
         }
     }
 
+    //  Checks whether a swipe is permitted
     #region Swipe-Check
     //  Checks Whether We can swipe to Destination
     public bool CanSwipeToDestination(BoardTile destinationTile, SwipeDirection swipeDirection)
@@ -61,6 +68,8 @@ public class Drop : MonoBehaviour
         }
         else
         {
+            //  Play Wrong move
+            SetWrongDestination(destinationTile);
             return false;
         }
     }
@@ -73,8 +82,9 @@ public class Drop : MonoBehaviour
         //  Check count of adjacent same type drops in row
         int rowCount = destinationTile.CheckConsecutiveRows(dropType, swipeDirection);
 
+        Drop tmp = destinationTile.GetDrop();
         //  If there are more than or equal to 2 adjacent same drops, there is a match!!
-        if (columnCount >= 2 || rowCount >= 2)
+        if (tmp != null && !tmp.IsInAction() && columnCount >= 2 || rowCount >= 2)
         {
             return true;
         }
@@ -85,6 +95,7 @@ public class Drop : MonoBehaviour
     #endregion
 
 
+    //  Swap animation -- using lerp
     #region Swap
 
     public void SetDestination(BoardTile destinationTile)
@@ -103,19 +114,19 @@ public class Drop : MonoBehaviour
 
     void MoveToDestinationTile()
     {
-        lerpTimer += Time.deltaTime;
+        swapTimer += Time.deltaTime;
 
-        if (lerpTimer <= lerpTime)
+        if (swapTimer <= swapTime)
         {
             //  Lerp Towards Destination Tile Location
-            transform.position = Vector3.Lerp(startPosition, destTile.transform.position, lerpTimer / lerpTime);
+            transform.position = Vector3.Lerp(startPosition, destTile.transform.position, swapTimer / swapTime);
         }
         else
         {
             //  Make sure final destination is reached
             transform.position = destTile.transform.position;
             //  Reset Lerp Timer
-            lerpTimer = 0;
+            swapTimer = 0;
             //  Stop Swap
             isSwapping = false;
             //  Check Match if not sliding
@@ -131,6 +142,7 @@ public class Drop : MonoBehaviour
     #endregion
 
 
+    //  Slide animation -- using lerp
     #region Slide
     void SetSlideDestination(BoardTile destinationTile)
     {
@@ -183,6 +195,67 @@ public class Drop : MonoBehaviour
     #endregion
 
 
+    //  False move animation -- using lerp
+    #region FalseMove
+    void SetWrongDestination(BoardTile destinationTile)
+    {
+        //  Set start position as your current position
+        startPosition = transform.position;
+        //  Set destination tile
+        destTile = destinationTile;
+        //  Start False Move
+        isFalseMove = true;
+        //  Set isDirection to move towards direction
+        isDirection = true;
+    }
+
+    void WrongMove()
+    {
+        //  Increment Timer
+        halfMoveTimer += Time.deltaTime;
+
+        if (isDirection)
+        {
+            
+            if (halfMoveTimer <= halfMoveTime)
+            {
+                //  Lerp Towards Destination Tile Location
+                transform.position = Vector3.Lerp(startPosition, destTile.transform.position, halfMoveTimer/halfMoveTime);
+            }
+            else
+            {
+                //  Make sure we reached destination
+                transform.position = destTile.transform.position;
+                //  Reset start position
+                startPosition = transform.position;
+                //  Reset timer
+                halfMoveTimer = 0f;
+                //  Reverse direction
+                isDirection = false;
+            }
+        }
+        else
+        {
+            if (halfMoveTimer <= halfMoveTime)
+            {
+                //  Lerp Towards Self Tile Location
+                transform.position = Vector3.Lerp(startPosition, selfTile.transform.position, halfMoveTimer / halfMoveTime);
+            }
+            else
+            {
+                //  Make sure we reached destination
+                transform.position = selfTile.transform.position;
+                //  Reset timer
+                halfMoveTimer = 0f;
+                //  Reset wrong move
+                isFalseMove = false;
+                //  Clear destination tile
+                destTile = null;
+            }
+        }
+    }
+    #endregion
+    //  Matches the drops and plays animation
     #region Match
     public void Match()
     {
@@ -207,6 +280,7 @@ public class Drop : MonoBehaviour
     #endregion
 
 
+    //  Checks the tile below if there is one!
     #region CheckBelow
     void CheckBelow()
     {
@@ -223,12 +297,17 @@ public class Drop : MonoBehaviour
     }
     #endregion
 
+
+    //  Animator related stuff
     #region Animator
     void SetNewAnim(string newAnim)
     {
         anim.SetTrigger(newAnim);
     }
     #endregion
+
+
+    //  Deactivates the drops and removes from list that holds inside currently matching drops
     public void DeactivateDrop()
     {
         //  Disable gameobject
@@ -236,6 +315,36 @@ public class Drop : MonoBehaviour
         //  Remove from matchind drops
         Board.instance.RemoveFromMatchingDrops(this);
     }
+
+
+    //  Resets the drops
+    public void ResetDrop()
+    {
+        //  Reset anim trigger from matched
+        anim.ResetTrigger("Match");
+        //  Activate the drop
+        gameObject.SetActive(true);
+        //  Reset booleans
+        isSliding = false;
+        isSwapping = false;
+        //  Reset Position
+        transform.localPosition = Vector3.zero;
+    }
+
+
+    //  Returns whether selected drop is in action or not
+    public bool IsInAction()
+    {
+        if (!isSwapping && !isSliding && !isFalseMove)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     //  Getters & Setters
     #region Getters & Setters
     public DropType GetDropType()

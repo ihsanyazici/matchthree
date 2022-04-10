@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropType: 2
-  lerpTime: 0.2
+  swapTime: 0.2
   slideLerpTime: 0.3
+  halfMoveTime: 0.15
 --- !u!61 &3327620387624275448
 BoxCollider2D:
   m_ObjectHideFlags: 0
