@@ -20,6 +20,7 @@ public class Drop : MonoBehaviour
 
     #region Slide-Lerp
     [SerializeField] private float slideLerpTime;
+    private float selfSlideLerpTime;
     private float slideLerpTimer;
     private bool isSliding;
     #endregion
@@ -148,7 +149,9 @@ public class Drop : MonoBehaviour
     #region Slide
     void SetSlideDestination(BoardTile destinationTile)
     {
-        //  Reset slide lerp timer
+        //  Check number of tiles to extend slide duration
+        selfSlideLerpTime = selfTile.FindNumTilesToDestination(destinationTile) * slideLerpTime;
+        //  Reset slide lerp timer  -- double check
         slideLerpTimer = 0f;
         //  Empty selfTile since you don't swap but replace
         selfTile.SetDrop(null);
@@ -168,10 +171,11 @@ public class Drop : MonoBehaviour
     {
         slideLerpTimer += Time.deltaTime;
 
-        if (slideLerpTimer <= slideLerpTime)
+        if (slideLerpTimer <= selfSlideLerpTime)
         {
             //  Smooth t
-            float t = EaseFunctions.EaseOut(slideLerpTimer / slideLerpTime);
+            //float t = EaseFunctions.EaseOut(slideLerpTimer / slideLerpTime);
+            float t = slideLerpTimer / selfSlideLerpTime;
             //  Lerp Towards Destination Tile Location
             transform.position = Vector3.Lerp(startPosition, destTile.transform.position,t);
         }
