@@ -17,8 +17,8 @@ public class GridCreator : MonoBehaviour
         //  Clear previous array if not null
         EraseGridCreator();
         //  Determine tile distance using sprite size for the tiles
-        tileDistance = new Vector2(tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x, tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y);
-
+        SpriteRenderer tileSprite = tilePrefab.GetComponent<SpriteRenderer>();
+        tileDistance = new Vector2(tileSprite.bounds.size.x, tileSprite.bounds.size.y);
         //  Since I will have fixed board size, no need to use list
         tiles = new BoardTile[boardSize.x * boardSize.y];
 

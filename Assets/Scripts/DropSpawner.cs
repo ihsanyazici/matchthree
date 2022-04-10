@@ -21,10 +21,10 @@ public class DropSpawner : MonoBehaviour
         pool = GameManager.instance.Pool;
     }
 
-    public void InitDropSpawner()
+    public void InitDropSpawner(GridCreator gc)
     {
         //  Set grid creator
-        gridCreator = Board.instance.GetGridCreator();
+        gridCreator = gc;
         //  Set self tiles list for easy access
         tiles = gridCreator.GetTiles();
         // Initialize the list
@@ -67,7 +67,8 @@ public class DropSpawner : MonoBehaviour
         //  Else, spawn new drop
         else
         {
-            tmp = Instantiate(GetRandomDrop(dropPrefabs), tile.transform);            
+            tmp = Instantiate(GetRandomDrop(dropPrefabs), tile.transform);
+            Debug.Log("I have spawned it myself" + tmp.name);
         }
 
         //  Set drop of the tile and tile of the drop

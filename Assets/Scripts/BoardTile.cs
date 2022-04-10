@@ -23,11 +23,20 @@ public class BoardTile : MonoBehaviour
     private List<BoardTile> matchedTilesColumn;
     private List<BoardTile> matchedTilesRow;
 
+    private Board board;
+
+    //  I could set the index while creating the grids, but since I name them with their index, I will get it from their name
+    private int index;
+
     private void Start()
     {
         //  Initialize the list
         matchedTilesColumn = new List<BoardTile>();
         matchedTilesRow = new List<BoardTile>();
+
+        board = LevelManager.GetCurrentLevel().GetBoard();
+
+        index = int.Parse(name);
     }
 
     private void Update()
@@ -37,7 +46,8 @@ public class BoardTile : MonoBehaviour
         {
             if(canSpawn)
             {
-                Board.instance.GetDropSpawner().SpawnDrop(this);
+                //  Let the drop spawner spawn the drop
+                board.GetDropSpawner().SpawnDrop(this);
                 canSpawn = false;
             }
             else
@@ -299,9 +309,21 @@ public class BoardTile : MonoBehaviour
     #endregion
 
 
+    public int FindNumTilesToDestination(BoardTile destination)
+    {
+        int numTiles = (destination.GetIndex() - index) / 8;
+
+        return numTiles;
+    }
     //  Getters and Setters
+
     #region Getters & Setters
 
+    //  Inde
+    public int GetIndex()
+    {
+        return index;
+    }
     //  Drops
     public void SetDrop(Drop drop)
     {

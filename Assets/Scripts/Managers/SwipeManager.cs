@@ -16,12 +16,15 @@ public class SwipeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.IsGameStarted)
         {
-            CastRayToObject();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                CastRayToObject();
+            }
 
-        CheckSwipe();
+            CheckSwipe();
+        }       
     }
 
     //  Check Swipe -- Depending on the Given Directions,

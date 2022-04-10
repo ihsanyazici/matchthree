@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _hud;
     #endregion
 
+    #region Texts
+    [SerializeField] private TextMeshProUGUI scoreText;
+    #endregion
+
     private void Awake()
     {
         InitSingleton();
@@ -41,6 +46,8 @@ public class UIManager : MonoBehaviour
         _startPanel.SetActive(false);
         //  Enable HUD
         _hud.SetActive(true);
+        //  Reset Score Text
+        ResetScoreText();
     }
     public void OnGameEnd(bool isWon)
     {
@@ -57,5 +64,15 @@ public class UIManager : MonoBehaviour
         }
 
         //  ACTIONS     -->     Fill as you need
+    }
+
+    void ResetScoreText()
+    {
+        scoreText.text = 0f.ToString();
+    }
+
+    public void SetScoreText(int score)
+    {
+        scoreText.text = score.ToString();
     }
 }

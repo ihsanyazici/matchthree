@@ -6,6 +6,7 @@ public class Drop : MonoBehaviour
 
     private BoardTile selfTile;
 
+    private Board board;
     //  Animation
     private Animator anim;
 
@@ -32,6 +33,7 @@ public class Drop : MonoBehaviour
 
     private void Start()
     {
+        board = LevelManager.GetCurrentLevel().GetBoard();
         //  Get the animator of drop
         anim = GetComponent<Animator>();
     }
@@ -255,12 +257,14 @@ public class Drop : MonoBehaviour
         }
     }
     #endregion
+
+
     //  Matches the drops and plays animation
     #region Match
     public void Match()
     {
         //  Add this drop to matching drops
-        Board.instance.AddToMatchingDrops(this);
+        board.AddToMatchingDrops(this);
         //  Remove Self From Tile and Add to the Pool
         RemoveFromTile();
         //  Switch to match animation
@@ -275,7 +279,7 @@ public class Drop : MonoBehaviour
         //  Add yourself to the object pool
         GameManager.instance.Pool.AddDropToPool(this);
         //  Remove yourself from drops list
-        Board.instance.GetDropSpawner().RemoveFromDropList(this);
+        board.GetDropSpawner().RemoveFromDropList(this);
     }
     #endregion
 
@@ -285,7 +289,7 @@ public class Drop : MonoBehaviour
     void CheckBelow()
     {
         //  If drop has a south tile
-        if (Board.instance.IsMatchingListEmpty() && selfTile != null && selfTile.south != null)
+        if (board.IsMatchingListEmpty() && selfTile != null && selfTile.south != null)
         {
             //  if our south tile doesn't have a drop
             if (selfTile.south.GetDrop() == null)
@@ -313,7 +317,7 @@ public class Drop : MonoBehaviour
         //  Disable gameobject
         gameObject.SetActive(false);
         //  Remove from matchind drops
-        Board.instance.RemoveFromMatchingDrops(this);
+        board.RemoveFromMatchingDrops(this);
     }
 
 
@@ -327,8 +331,13 @@ public class Drop : MonoBehaviour
         //  Reset booleans
         isSliding = false;
         isSwapping = false;
+        isFalseMove = false;
         //  Reset Position
         transform.localPosition = Vector3.zero;
+        //  Reset timers
+        swapTimer = 0f;
+        slideLerpTimer = 0f;
+        halfMoveTimer = 0f;
     }
 
 

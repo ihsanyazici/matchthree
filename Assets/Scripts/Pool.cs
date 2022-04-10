@@ -27,7 +27,7 @@ public class Pool : MonoBehaviour
         //  Remove from the pool
         dropPool.Remove(drop);
         //  Remove drop parent
-        drop.transform.parent = null;
+        //drop.transform.parent = null;
         //  Activate
         drop.gameObject.SetActive(true);
     }
